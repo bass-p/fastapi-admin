@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart - Sunglass Hub</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1><a href="/">Sunglass Hub</a></h1>
+      <nav>
+        <a class="nav-link" href="/cart.html">Cart <span id="cart-count" class="badge">0</span></a>
+      </nav>
+    </div>
+  </header>
+  <div class="container">
+    <h2>Your Cart</h2>
+    <div id="empty-message" style="display:none;">Your cart is empty.</div>
+    <table id="cart-table" class="cart-table" style="display:none;">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Subtotal</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <div id="cart-total" style="margin-top:1rem;font-weight:bold;"></div>
+    <div class="cart-actions" style="margin-top:1rem;display:flex;gap:1rem;">
+      <a href="/" class="btn btn-secondary">Continue Shopping</a>
+      <a href="/checkout.html" class="btn btn-primary" id="checkout-btn">Checkout</a>
+    </div>
+  </div>
+  <script src="/static/js/cart.js"></script>
+</body>
+</html>

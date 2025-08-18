@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Products - Sunglass Hub</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1><a href="/">Sunglass Hub</a></h1>
+      <nav>
+        <a class="nav-link" href="/admin">Dashboard</a>
+        <a class="nav-link" href="/admin/products">Products</a>
+        <a class="nav-link" href="/admin/orders">Orders</a>
+      </nav>
+    </div>
+  </header>
+  <div class="container">
+    <h2>Manage Products</h2>
+    <table class="cart-table">
+      <thead>
+        <tr><th>ID</th><th>Name</th><th>Price (NRP)</th><th>Image</th><th>Action</th></tr>
+      </thead>
+      <tbody>
+        {% for p in products %}
+        <tr>
+          <td>{{ p.id }}</td>
+          <td>{{ p.name }}</td>
+          <td>{{ '%.2f' % p.price }}</td>
+          <td><img src="{{ p.image_url }}" alt="{{ p.name }}" style="height:40px;"></td>
+          <td><a href="/admin/products?edit_id={{ p.id }}">Edit</a> | <a href="/admin/products?delete_id={{ p.id }}" onclick="return confirm('Delete this product?');">Delete</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <h3 style="margin-top:2rem;">{% if product_to_edit %}Edit Product{% else %}Add Product{% endif %}</h3>
+    <!-- Submit via GET to avoid dependency on multipart form parsing -->
+    <form action="/admin/save-product" method="get" style="max-width:500px;">
+      {% if product_to_edit %}
+      <input type="hidden" name="id" value="{{ product_to_edit.id }}">
+      {% endif %}
+      <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required value="{{ product_to_edit.name if product_to_edit else '' }}">
+      </div>
+      <div>
+        <label for="description">Description</label>
+        <textarea id="description" name="description" rows="3" required>{{ product_to_edit.description if product_to_edit else '' }}</textarea>
+      </div>
+      <div>
+        <label for="price">Price (NRP)</label>
+        <input type="number" step="0.01" id="price" name="price" required value="{{ product_to_edit.price if product_to_edit else '' }}">
+      </div>
+      <div>
+        <label for="image_url">Image URL (e.g., /static/images/aviator.png)</label>
+        <input type="text" id="image_url" name="image_url" required value="{{ product_to_edit.image_url if product_to_edit else '/static/images/aviator.png' }}">
+      </div>
+      <button type="submit" class="btn btn-primary" style="margin-top:1rem;">{% if product_to_edit %}Update{% else %}Add{% endif %} Product</button>
+    </form>
+  </div>
+</body>
+</html>

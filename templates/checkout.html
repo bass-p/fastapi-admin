@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Sunglass Hub</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1><a href="/">Sunglass Hub</a></h1>
+      <nav>
+        <a class="nav-link" href="/cart.html">Cart <span id="cart-count" class="badge">0</span></a>
+      </nav>
+    </div>
+  </header>
+  <div class="container">
+    <h2>Checkout</h2>
+    <div id="summary"></div>
+    <form id="checkout-form">
+      <div>
+        <label for="name">Full Name</label>
+        <input type="text" id="name" required>
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+      </div>
+      <div>
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" required>
+      </div>
+      <div>
+        <label for="address">Delivery Address</label>
+        <textarea id="address" rows="3" required></textarea>
+      </div>
+      <button type="submit">Pay with eSewa</button>
+    </form>
+  </div>
+  <script src="/static/js/checkout.js"></script>
+</body>
+</html>
